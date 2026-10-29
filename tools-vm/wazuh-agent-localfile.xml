@@ -1,0 +1,69 @@
+  <!-- NTD (Project 4): Suricata and Zeek output of offline case analysis.
+       Each file gets labels so Wazuh rules can tell the sensors and Zeek log types apart.
+       Wildcards: the agent re-checks them about every minute, so a new case is picked
+       up on its own. Hidden ".tmp-*" folders (analysis still running) never match. -->
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/suricata/alerts.json</location>
+    <label key="nsm.sensor">suricata</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/conn.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">conn</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/dns.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">dns</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/http.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">http</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/ssl.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">ssl</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/files.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">files</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/notice.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">notice</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/dhcp.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">dhcp</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/kerberos.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">kerberos</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/software.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">software</label>
+  </localfile>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/nsm/cases/*/zeek/dce_rpc.log</location>
+    <label key="nsm.sensor">zeek</label>
+    <label key="nsm.log">dce_rpc</label>
+  </localfile>

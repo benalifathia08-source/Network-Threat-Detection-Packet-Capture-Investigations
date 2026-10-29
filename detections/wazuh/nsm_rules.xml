@@ -1,0 +1,269 @@
+<!--
+  NTD (Project 4): Wazuh rules for Suricata and Zeek output.
+  IDs 100800-100899 (detections/README.md):
+    100800-100859  case detections, written per case
+    100860-100899  pipeline and visibility rules (this block)
+
+  Suricata alerts are already handled by Wazuh's own rules 86600/86601 (level 3).
+  The rules below add:
+    - our own Suricata rules (SIDs 1004001-1004999) at a higher level
+    - Zeek events, so they can be searched in the dashboard
+    - a few generic visibility rules
+-->
+<group name="ntd,nsm,">
+
+  <!-- Our own Suricata rules: higher level than the generic ET alert -->
+  <rule id="100860" level="10">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">^1004\d\d\d$</field>
+    <description>NTD custom Suricata rule: $(alert.signature)</description>
+    <group>suricata,ntd_custom,</group>
+    <options>no_full_log</options>
+  </rule>
+
+  <!-- Zeek parent rule: every Zeek line from the case logs (level 0 = not stored as an alert) -->
+  <rule id="100870" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="nsm.sensor">^zeek$</field>
+    <description>Zeek $(nsm.log) event</description>
+    <group>zeek,</group>
+  </rule>
+
+  <!-- Searchable Zeek events (level 3). conn.log stays at level 0: too many lines;
+       it is read from the files directly, and case rules can still match it. -->
+  <rule id="100871" level="3">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^dns$</field>
+    <description>Zeek DNS: $(query) ($(qtype_name))</description>
+    <group>zeek,zeek_dns,</group>
+  </rule>
+
+  <rule id="100872" level="3">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^http$</field>
+    <description>Zeek HTTP: $(method) $(host) $(uri)</description>
+    <group>zeek,zeek_http,</group>
+  </rule>
+
+  <rule id="100873" level="3">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^ssl$</field>
+    <description>Zeek TLS: $(server_name)</description>
+    <group>zeek,zeek_ssl,</group>
+  </rule>
+
+  <rule id="100874" level="3">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^files$</field>
+    <description>Zeek file seen: $(mime_type)</description>
+    <group>zeek,zeek_files,</group>
+  </rule>
+
+  <rule id="100875" level="3">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^dhcp$|^kerberos$|^software$</field>
+    <description>Zeek $(nsm.log) event</description>
+    <group>zeek,</group>
+  </rule>
+
+  <rule id="100876" level="5">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^notice$</field>
+    <description>Zeek notice: $(note) $(msg)</description>
+    <group>zeek,zeek_notice,</group>
+  </rule>
+
+  <!-- ================= Case 1: Lumma Stealer (2026-01-31 exercise) ================= -->
+
+  <!-- 100801: upload-heavy encrypted session to an outside host.
+       What: Zeek conn.log line, TCP 443, external destination, the inside host SENT at
+             least 200,000 bytes of payload and got less than 100,000 back.
+       Why:  Lumma uploaded 253 KB, 388 KB and 1.42 MB to its C2 and got 2,245 bytes back
+             each time. Encryption hides the content, not the direction and the size.
+             Case-independent: nothing about Lumma's domains or IPs.
+       False alarms: real uploads (cloud backup, attachments, video calls). 0 on the clean
+             baseline and on cases 2 and 3. In production, allowlist known upload services. -->
+  <rule id="100801" level="8">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^conn$</field>
+    <field name="proto">^tcp$</field>
+    <field name="id.resp_p">^443$</field>
+    <field name="id.resp_h" type="pcre2" negate="yes">^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)</field>
+    <field name="orig_bytes" type="pcre2">^([2-9]\d{5}|\d{7,})$</field>
+    <field name="resp_bytes" type="pcre2">^\d{1,5}$</field>
+    <description>NTD: upload-heavy TLS session: $(id.orig_h) sent $(orig_bytes) bytes to $(id.resp_h), got $(resp_bytes) back</description>
+    <group>ntd_case1,exfiltration,</group>
+    <mitre>
+      <id>T1041</id>
+    </mitre>
+  </rule>
+
+  <!-- 100802 / 100803: burst of LSA name lookups (domain group discovery).
+       What: Zeek dce_rpc.log, LsarLookupNames calls; 100803 fires when one host makes 100
+             of them within 10 seconds.
+       Why:  right after stealing data, the victim resolved every domain and built-in group
+             name 12 times each (748 lookups, up to 302 per second). A person or a normal
+             logon does not do that; enumeration tools and malware do.
+       False alarms: admin tools that list all groups (AD consoles, some audit tools), or
+             a Windows dialog listing groups. Case 2 has 1 lookup, case 3 none.
+       Note: Wazuh counts by arrival time. Live, that is traffic time; for an offline case,
+             it is the replay speed (300 lines/s), which is fast enough to fire. -->
+  <!-- Level 1, not 0: Wazuh's frequency rules (100803) do not count matches of a level-0
+       rule (found 2026-10-21: at level 0 the burst rule never fired). Level 1 is still
+       below the alert log level (3), so these lookups are counted but not stored. -->
+  <rule id="100802" level="1">
+    <if_sid>100870</if_sid>
+    <field name="nsm.log">^dce_rpc$</field>
+    <field name="operation">^LsarLookupNames</field>
+    <description>Zeek DCE-RPC: LSA name lookup by $(id.orig_h)</description>
+    <group>zeek,</group>
+  </rule>
+
+  <rule id="100803" level="10" frequency="100" timeframe="10" ignore="60">
+    <if_matched_sid>100802</if_matched_sid>
+    <same_field>id.orig_h</same_field>
+    <description>NTD: burst of LSA name lookups from $(id.orig_h) (100+ in 10 s): possible domain group discovery</description>
+    <group>ntd_case1,discovery,</group>
+    <mitre>
+      <id>T1069.002</id>
+    </mitre>
+  </rule>
+
+  <!-- ================= Case 2: KongTuke / ClickFix (2026-09-11 exercise) ================= -->
+
+  <!-- 100822: large plain-HTTP upload.
+       What: Zeek http.log, a POST of at least 1,000,000 bytes to an outside host.
+       Why:  the backdoor sent 4,447,024 bytes in one POST (the reply was an empty 204).
+             The TLS version of the same behaviour is 100801.
+       False alarms: file uploads to plain-HTTP sites (rare today). 0 in the other captures.
+       Listed before 100820 on purpose: this upload was answered with a 204, so both
+       rules match it, and the higher-value rule must win. -->
+  <rule id="100822" level="8">
+    <if_sid>100872</if_sid>
+    <field name="method">^POST$</field>
+    <field name="request_body_len" type="pcre2">^\d{7,}$</field>
+    <field name="id.resp_h" type="pcre2" negate="yes">^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)</field>
+    <description>NTD: large HTTP upload: $(id.orig_h) POSTed $(request_body_len) bytes to $(host)</description>
+    <group>ntd_case2,exfiltration,</group>
+    <mitre>
+      <id>T1041</id>
+    </mitre>
+  </rule>
+
+  <!-- 100820 / 100821: HTTP polling with empty replies (beacon).
+       What: 100820 marks a Zeek HTTP response with status 204 (No Content); 100821 fires
+             when one host sends 20 of them within 5 minutes.
+       Why:  the backdoor asked "any work?" every ~10 s and was told "no" (204) 52 times.
+             A person browsing does not produce a steady stream of empty answers.
+       False alarms: apps that poll with 204 (some push / long-polling APIs, connectivity
+             checks such as generate_204). Allowlist those hosts in production.
+       Note: Wazuh counts by arrival time; live that is traffic time (about 30 per
+             5 min here); in replay it is faster, so the rule fires either way. -->
+  <rule id="100820" level="3">
+    <if_sid>100872</if_sid>
+    <field name="status_code">^204$</field>
+    <description>Zeek HTTP: empty reply (204) from $(host) to $(id.orig_h)</description>
+    <group>zeek,zeek_http,</group>
+  </rule>
+
+  <rule id="100821" level="10" frequency="20" timeframe="300" ignore="300">
+    <if_matched_sid>100820</if_matched_sid>
+    <same_field>host</same_field>
+    <description>NTD: HTTP polling: 20+ empty (204) replies from $(host) in 5 min: possible C2 beacon</description>
+    <group>ntd_case2,command_and_control,</group>
+    <mitre>
+      <id>T1071.001</id>
+    </mitre>
+  </rule>
+
+  <!-- 100823 / 100824: the same name fails to resolve again and again.
+       What: 100823 marks a Zeek DNS NXDOMAIN answer, except names Windows always asks
+             for (wpad.*, isatap.*, and service records starting with "_"); 100824 fires
+             when the same name fails 10 times within 5 minutes.
+       Why:  the backdoor kept trying three dead fallback C2 domains (15-16 times each).
+             Measured first: without the exclusions, Windows' wpad lookups (13-20 per
+             capture) would have fired in every case.
+       False alarms: a removed internal server, or a script retrying a typo.
+       ATT&CK T1008 Fallback Channels. -->
+  <rule id="100823" level="3">
+    <if_sid>100871</if_sid>
+    <field name="rcode_name">^NXDOMAIN$</field>
+    <field name="query" type="pcre2" negate="yes">^(wpad|isatap)\.|^_</field>
+    <description>Zeek DNS: NXDOMAIN for $(query)</description>
+    <group>zeek,zeek_dns,</group>
+  </rule>
+
+  <rule id="100824" level="6" frequency="10" timeframe="300" ignore="300">
+    <if_matched_sid>100823</if_matched_sid>
+    <same_field>query</same_field>
+    <description>NTD: $(query) failed to resolve 10+ times in 5 min: possible dead C2 fallback domain</description>
+    <group>ntd_case2,command_and_control,</group>
+    <mitre>
+      <id>T1008</id>
+    </mitre>
+  </rule>
+
+  <!-- ================= Case 3: Natureforce RAT (2026-10-01 exercise) ================= -->
+
+  <!-- 100840: a command-line tool downloads a Windows program over plain HTTP.
+       What: Zeek http.log, user agent curl / Wget / PowerShell, and the response was a
+             Windows executable (MIME type application/x-dosexec).
+       Why:  the victim's machine fetched runner_ilove.exe with curl/8.21.0 from a bare IP
+             on port 9000. People download programs with a browser; a script or a pasted
+             command uses curl or PowerShell. Covers ClickFix-style and script loaders.
+       False alarms: admins or developers fetching tools with curl/PowerShell. 0 in the
+             other captures.
+       Listed before 100841 so the more specific rule wins. -->
+  <rule id="100840" level="10">
+    <if_sid>100872</if_sid>
+    <field name="user_agent" type="pcre2">(?i)^(curl|wget)/|powershell</field>
+    <field name="resp_mime_types">application/x-dosexec</field>
+    <description>NTD: command-line tool ($(user_agent)) downloaded a Windows program from $(host)$(uri)</description>
+    <group>ntd_case3,ingress_tool_transfer,</group>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+  </rule>
+
+  <!-- 100841: any plain-HTTP request made by a command-line tool from a workstation.
+       Why:  in case 3 the whole chain was curl: two script fetches, then the program.
+             Visibility (level 5): useful context next to 100840, not an alert on its own.
+       False alarms: package managers and scripts on servers; tune by host role. -->
+  <rule id="100841" level="5">
+    <if_sid>100872</if_sid>
+    <field name="user_agent" type="pcre2">(?i)^(curl|wget)/|powershell</field>
+    <description>NTD: command-line HTTP request ($(user_agent)) to $(host)$(uri)</description>
+    <group>ntd_case3,</group>
+  </rule>
+
+  <!-- 100842: DNS-over-HTTPS from a client.
+       What: Zeek ssl.log, the TLS server name is a public DoH resolver.
+       Why:  right after the download, the malware resolved its server through
+             dns.google over HTTPS, so the company DNS (and its logs) never saw the lookup.
+             In an Active Directory network, clients should use the domain's DNS.
+       False alarms: browsers with "secure DNS" turned on (Firefox, Chrome, Edge can do
+             this). Block or allow by policy, then this rule shows who bypasses it.
+       ATT&CK: T1071.004 Application Layer Protocol: DNS. -->
+  <rule id="100842" level="6">
+    <if_sid>100873</if_sid>
+    <field name="server_name" type="pcre2">^(dns\.google|dns\.google\.com|cloudflare-dns\.com|[a-z]+\.cloudflare-dns\.com|one\.one\.one\.one|dns\.quad9\.net|dns\.nextdns\.io|doh\.opendns\.com|dns\.adguard-dns\.com)$</field>
+    <description>NTD: DNS-over-HTTPS from $(id.orig_h) to $(server_name): DNS logging bypassed</description>
+    <group>ntd_case3,command_and_control,</group>
+    <mitre>
+      <id>T1071.004</id>
+    </mitre>
+  </rule>
+
+  <!-- Visibility: a Windows program was downloaded. Not malicious by itself
+       (updates are programs too), but every case report checks these. -->
+  <rule id="100880" level="7">
+    <if_sid>100874</if_sid>
+    <field name="mime_type">^application/x-dosexec$</field>
+    <description>Zeek: Windows executable transferred (sha256 $(sha256))</description>
+    <group>zeek,zeek_files,ntd_visibility,</group>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+  </rule>
+
+</group>

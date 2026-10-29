@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 380" width="980" height="380" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Case 2: backdoor activity over time">
+<rect width="980" height="380" fill="#ffffff"/>
+<text x="20" y="32" font-size="18" font-weight="600" fill="#1f2328">Case 2: the backdoor's rhythm (2026-09-11, UTC)</text>
+<text x="20" y="54" font-size="13" fill="#59636e">Each mark is one connection or request. The domains changed; the rhythm and the URL layout did not.</text>
+<line x1="170.0" y1="85" x2="170.0" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="170.0" y="345" font-size="12" fill="#59636e" text-anchor="middle">20:05</text>
+<line x1="203.9" y1="85" x2="203.9" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="237.8" y1="85" x2="237.8" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="271.7" y1="85" x2="271.7" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="305.7" y1="85" x2="305.7" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="339.6" y1="85" x2="339.6" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="339.6" y="345" font-size="12" fill="#59636e" text-anchor="middle">20:10</text>
+<line x1="373.5" y1="85" x2="373.5" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="407.4" y1="85" x2="407.4" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="441.3" y1="85" x2="441.3" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="475.2" y1="85" x2="475.2" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="509.1" y1="85" x2="509.1" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="509.1" y="345" font-size="12" fill="#59636e" text-anchor="middle">20:15</text>
+<line x1="543.0" y1="85" x2="543.0" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="577.0" y1="85" x2="577.0" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="610.9" y1="85" x2="610.9" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="644.8" y1="85" x2="644.8" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="678.7" y1="85" x2="678.7" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="678.7" y="345" font-size="12" fill="#59636e" text-anchor="middle">20:20</text>
+<line x1="712.6" y1="85" x2="712.6" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="746.5" y1="85" x2="746.5" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="780.4" y1="85" x2="780.4" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="814.3" y1="85" x2="814.3" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="848.3" y1="85" x2="848.3" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="848.3" y="345" font-size="12" fill="#59636e" text-anchor="middle">20:25</text>
+<line x1="882.2" y1="85" x2="882.2" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="916.1" y1="85" x2="916.1" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<line x1="950.0" y1="85" x2="950.0" y2="325" stroke="#d1d9e0" stroke-width="1"/>
+<text x="158" y="124" font-size="13" fill="#1f2328" text-anchor="end">HTTP C2, every ~10 s</text>
+<text x="158" y="184" font-size="13" fill="#1f2328" text-anchor="end">Refused by a C2 server</text>
+<text x="158" y="244" font-size="13" fill="#1f2328" text-anchor="end">TLS C2, every ~16 s</text>
+<text x="158" y="304" font-size="13" fill="#1f2328" text-anchor="end">Dead fallback names</text>
+<path d="M232.4,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<circle cx="247.1" cy="120" r="5" fill="#bf8700"/>
+<circle cx="252.5" cy="120" r="5" fill="#0969da"/>
+<circle cx="258.8" cy="120" r="5" fill="#0969da"/>
+<circle cx="264.3" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="269.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="275.5" cy="120" r="5" fill="#0969da"/>
+<circle cx="281.9" cy="120" r="5" fill="#bf8700"/>
+<circle cx="287.3" cy="120" r="5" fill="#0969da"/>
+<circle cx="292.9" cy="120" r="5" fill="#bf8700"/>
+<circle cx="298.8" cy="120" r="5" fill="#0969da"/>
+<circle cx="304.5" cy="120" r="5" fill="#bf8700"/>
+<circle cx="337.1" cy="120" r="9" fill="#cf222e"/>
+<circle cx="349.9" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="355.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="361.6" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="367.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="373.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="379.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="385.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="391.3" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="396.9" cy="120" r="5" fill="#0969da"/>
+<circle cx="403.1" cy="120" r="5" fill="#bf8700"/>
+<circle cx="409.4" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="415.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="422.1" cy="120" r="5" fill="#0969da"/>
+<circle cx="428.5" cy="120" r="5" fill="#bf8700"/>
+<circle cx="434.9" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="440.9" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="446.8" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="452.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="457.8" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="463.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="469.0" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="474.5" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="480.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="485.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="491.9" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="498.0" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="504.4" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="510.3" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="516.3" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="521.8" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="528.1" cy="120" r="5" fill="#0969da"/>
+<circle cx="534.2" cy="120" r="5" fill="#bf8700"/>
+<circle cx="539.6" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="545.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="551.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="556.9" cy="120" r="5" fill="#0969da"/>
+<circle cx="562.7" cy="120" r="5" fill="#bf8700"/>
+<circle cx="568.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="574.3" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="579.9" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="586.2" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="591.8" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="597.5" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="603.5" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="609.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="614.9" cy="120" r="5" fill="#0969da"/>
+<circle cx="620.8" cy="120" r="5" fill="#bf8700"/>
+<circle cx="626.1" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="632.5" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="638.7" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="644.4" cy="120" r="3.5" fill="#8c959f"/>
+<circle cx="650.5" cy="120" r="3.5" fill="#8c959f"/>
+<path d="M752.4,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M762.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M768.6,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M771.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M778.5,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M781.8,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M787.8,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M791.1,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M796.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M800.2,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M806.2,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M809.5,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M815.8,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M819.2,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M825.7,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M829.0,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M834.6,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M838.0,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M844.5,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M847.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M853.6,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M857.0,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M863.4,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M866.8,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M872.8,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M876.2,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M882.7,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M885.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M891.6,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M894.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M901.9,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M905.2,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<path d="M911.5,176 l8,8 m0,-8 l-8,8" stroke="#cf222e" stroke-width="2"/>
+<circle cx="918.9" cy="120" r="5" fill="#bf8700"/>
+<rect x="220.6" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="221.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="221.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="222.4" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="223.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="225.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="259.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="267.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="276.8" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="286.6" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="294.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="303.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="313.3" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="322.2" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="331.0" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="340.8" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="349.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="358.2" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="367.6" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="376.4" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="385.3" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="395.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="403.4" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="412.5" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="421.8" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="430.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="439.6" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="449.3" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="457.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="466.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="476.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="485.0" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="493.8" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="503.5" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="511.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="521.0" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="530.4" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="539.2" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="548.1" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="557.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="566.2" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="575.2" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="584.6" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="593.5" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="602.4" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="612.0" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="620.5" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="629.5" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="638.9" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="647.7" y="233" width="4" height="14" fill="#1a7f37"/>
+<rect x="241.0" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="259.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="259.4" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="268.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="286.3" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="286.3" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="295.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="313.4" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="313.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="322.5" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="340.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="340.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="349.5" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="367.7" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="367.9" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="376.7" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="394.8" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="394.8" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="403.7" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="421.9" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="422.1" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="431.0" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="449.1" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="449.1" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="458.0" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="476.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="476.4" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="485.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="503.3" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="503.3" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="512.3" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="530.5" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="530.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="539.5" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="557.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="557.6" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="566.5" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="584.7" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="584.9" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="593.8" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="611.9" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="611.9" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="620.8" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="639.0" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="639.2" y="295" width="3" height="10" fill="#8250df"/>
+<rect x="648.0" y="295" width="3" height="10" fill="#8250df"/>
+<line x1="201.7" y1="56" x2="201.7" y2="325" stroke="#1f2328" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="205.7" y="66" font-size="12" fill="#1f2328">inject</text>
+<line x1="230.5" y1="70" x2="230.5" y2="325" stroke="#1f2328" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="234.5" y="80" font-size="12" fill="#1f2328">Node.js</text>
+<line x1="336.7" y1="56" x2="336.7" y2="325" stroke="#1f2328" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="340.7" y="66" font-size="12" fill="#1f2328">4.4 MB upload</text>
+<line x1="750.5" y1="70" x2="750.5" y2="325" stroke="#1f2328" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="754.5" y="80" font-size="12" fill="#1f2328">user logs on again</text>
+<circle cx="170" cy="364" r="5" fill="#8c959f"/>
+<text x="179" y="368" font-size="12" fill="#1f2328">empty reply (204)</text>
+<circle cx="320" cy="364" r="5" fill="#0969da"/>
+<text x="329" y="368" font-size="12" fill="#1f2328">task (200)</text>
+<circle cx="421" cy="364" r="5" fill="#bf8700"/>
+<text x="430" y="368" font-size="12" fill="#1f2328">result POST</text>
+<circle cx="529" cy="364" r="5" fill="#cf222e"/>
+<text x="538" y="368" font-size="12" fill="#1f2328">4.4 MB POST</text>
+<circle cx="637" cy="364" r="5" fill="#cf222e"/>
+<text x="646" y="368" font-size="12" fill="#1f2328">refused (400/406)</text>
+<circle cx="787" cy="364" r="5" fill="#1a7f37"/>
+<text x="796" y="368" font-size="12" fill="#1f2328">TLS session</text>
+<circle cx="895" cy="364" r="5" fill="#8250df"/>
+<text x="904" y="368" font-size="12" fill="#1f2328">NXDOMAIN</text>
+</svg>

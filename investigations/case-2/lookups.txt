@@ -1,0 +1,19 @@
+# Case 2 indicators for reputation lookups (by name / address only).
+# Left out: Cloudflare addresses (104.21.x, 172.67.x, shared), nodejs.org and
+# registry.npmjs.org (legitimate services abused), quadcinema[.]com's Google Cloud IP.
+domain quadcinema[.]com
+domain aatthews[.]cfd
+domain winrun2915[.]com
+domain logincrypt8338[.]com
+domain opscast3707[.]net
+domain xos-aploq[.]com
+domain mom-nower[.]com
+domain comonto-rsr[.]com
+domain fif-lost[.]com
+domain bert-hits[.]com
+domain globalcert8618[.]net
+domain hostjob3862[.]net
+domain opsbox8097[.]com
+ip 86[.]106[.]87[.]134
+ip 62[.]3[.]53[.]87
+ip 146[.]70[.]139[.]165

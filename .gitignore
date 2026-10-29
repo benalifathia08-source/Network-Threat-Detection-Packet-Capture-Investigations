@@ -1,0 +1,23 @@
+# Captures and anything that may contain malware never go into git (docs/SAFETY.md)
+*.pcap
+*.pcapng
+*.cap
+*.zip
+*.7z
+*.rar
+*.exe
+*.dll
+*.bin
+cases/
+extracted/
+
+# Full sensor output stays on the tools VM; reports quote excerpts only
+eve.json
+*.log
+
+# Secrets and local environment
+.env
+*.pass
+*.key
+.venv/
+__pycache__/

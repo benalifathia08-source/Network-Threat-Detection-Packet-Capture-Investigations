@@ -1,0 +1,31 @@
+{"nsm":{"sensor":"zeek","log":"dns"},"ts":"2026-01-27T23:00:00.000000Z","uid":"C1","id.orig_h":"10.1.21.58","query":"example.com","qtype_name":"A"}
+{"nsm":{"sensor":"zeek","log":"http"},"ts":"2026-01-27T23:00:02.000000Z","method":"GET","host":"example.com","uri":"/a"}
+{"nsm":{"sensor":"zeek","log":"ssl"},"ts":"2026-01-27T23:00:03.000000Z","server_name":"example.com"}
+{"nsm":{"sensor":"zeek","log":"files"},"ts":"2026-01-27T23:00:04.000000Z","fuid":"F1","mime_type":"text/html"}
+{"nsm":{"sensor":"zeek","log":"files"},"ts":"2026-01-27T23:00:05.000000Z","fuid":"F2","mime_type":"application/x-dosexec","sha256":"0000000000000000000000000000000000000000000000000000000000000000"}
+{"nsm":{"sensor":"zeek","log":"notice"},"ts":"2026-01-27T23:00:06.000000Z","note":"SSL::Invalid_Server_Cert","msg":"test"}
+{"nsm":{"sensor":"zeek","log":"kerberos"},"ts":"2026-01-27T23:00:07.000000Z","client":"user/EXAMPLE"}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:00:08.000000Z","uid":"C2","proto":"tcp"}
+{"nsm":{"sensor":"suricata"},"timestamp":"2026-01-27T23:05:00.000000+0000","event_type":"alert","src_ip":"10.1.21.58","dest_ip":"203.0.113.5","alert":{"signature_id":2000001,"signature":"ET TEST generic alert"}}
+{"nsm":{"sensor":"suricata"},"timestamp":"2026-01-27T23:05:01.000000+0000","event_type":"alert","src_ip":"10.1.21.58","dest_ip":"203.0.113.5","alert":{"signature_id":1004001,"signature":"FTOU7 NTD test"}}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C3","id.orig_h":"10.1.21.58","id.resp_h":"203.0.113.10","id.resp_p":443,"proto":"tcp","orig_bytes":1419610,"resp_bytes":2245}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C4","id.orig_h":"10.1.21.58","id.resp_h":"203.0.113.10","id.resp_p":443,"proto":"tcp","orig_bytes":253261,"resp_bytes":2245}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C5","id.orig_h":"10.1.21.58","id.resp_h":"203.0.113.50","id.resp_p":443,"proto":"tcp","orig_bytes":158274,"resp_bytes":43022}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C6","id.orig_h":"10.1.21.58","id.resp_h":"10.1.21.2","id.resp_p":443,"proto":"tcp","orig_bytes":5000000,"resp_bytes":2000}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C7","id.orig_h":"10.1.21.58","id.resp_h":"203.0.113.60","id.resp_p":443,"proto":"tcp","orig_bytes":480000,"resp_bytes":15800000}
+{"nsm":{"sensor":"zeek","log":"conn"},"ts":"2026-01-27T23:06:02.000000Z","uid":"C8","id.orig_h":"10.1.21.58","id.resp_h":"172.20.1.5","id.resp_p":443,"proto":"tcp","orig_bytes":900000,"resp_bytes":100}
+{"nsm":{"sensor":"zeek","log":"dce_rpc"},"ts":"2026-01-27T23:06:13.000000Z","uid":"C9","id.orig_h":"10.1.21.58","id.resp_h":"10.1.21.2","endpoint":"lsarpc","operation":"LsarLookupNames3","named_pipe":"\\\\pipe\\lsass"}
+{"nsm":{"sensor":"zeek","log":"dce_rpc"},"ts":"2026-01-27T23:06:13.000000Z","uid":"C10","id.orig_h":"10.1.21.58","id.resp_h":"10.1.21.2","endpoint":"samr","operation":"SamrConnect5","named_pipe":"\\\\pipe\\lsass"}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-09-11T20:09:55Z", "id.orig_h": "10.9.11.135", "id.resp_h": "203.0.113.20", "method": "POST", "host": "c2.example", "uri": "/htaolsj/3", "status_code": 204, "request_body_len": 4447024, "response_body_len": 0}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-09-11T20:09:56Z", "id.orig_h": "10.9.11.135", "id.resp_h": "10.9.11.2", "method": "POST", "host": "intranet.example", "uri": "/upload", "status_code": 200, "request_body_len": 5000000, "response_body_len": 10}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-09-11T20:10:18Z", "id.orig_h": "10.9.11.135", "id.resp_h": "203.0.113.20", "method": "GET", "host": "c2.example", "uri": "/c25to2y0kd/jf", "status_code": 204, "request_body_len": 0, "response_body_len": 0}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-09-11T20:10:19Z", "id.orig_h": "10.9.11.135", "id.resp_h": "203.0.113.20", "method": "GET", "host": "c2.example", "uri": "/x", "status_code": 200, "request_body_len": 0, "response_body_len": 51}
+{"nsm": {"sensor": "zeek", "log": "dns"}, "ts": "2026-09-11T20:07:08Z", "query": "deadc2-8618.example", "qtype_name": "A", "rcode_name": "NXDOMAIN"}
+{"nsm": {"sensor": "zeek", "log": "dns"}, "ts": "2026-09-11T20:08:50Z", "query": "wpad.overhands.example", "qtype_name": "A", "rcode_name": "NXDOMAIN"}
+{"nsm": {"sensor": "zeek", "log": "dns"}, "ts": "2026-09-11T20:08:51Z", "query": "_ldap._tcp.dc._msdcs.overhands.example", "qtype_name": "SRV", "rcode_name": "NXDOMAIN"}
+{"nsm": {"sensor": "zeek", "log": "dns"}, "ts": "2026-09-11T20:08:52Z", "query": "www.example.com", "qtype_name": "A", "rcode_name": "NOERROR"}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-10-01T19:30:36Z", "id.orig_h": "10.10.1.128", "id.resp_h": "203.0.113.30", "id.resp_p": 9000, "method": "GET", "host": "203.0.113.30:9000", "uri": "/wilow/runner.exe", "status_code": 200, "user_agent": "curl/8.21.0", "resp_mime_types": ["application/x-dosexec"]}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-10-01T19:29:00Z", "id.orig_h": "10.10.1.128", "id.resp_h": "203.0.113.40", "method": "GET", "host": "loader.example", "uri": "/prw", "status_code": 301, "user_agent": "curl/8.21.0"}
+{"nsm": {"sensor": "zeek", "log": "http"}, "ts": "2026-10-01T19:29:01Z", "id.orig_h": "10.10.1.128", "id.resp_h": "203.0.113.40", "method": "GET", "host": "www.example.com", "uri": "/setup.exe", "status_code": 200, "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/144.0.0.0", "resp_mime_types": ["application/x-dosexec"]}
+{"nsm": {"sensor": "zeek", "log": "ssl"}, "ts": "2026-10-01T19:30:44Z", "id.orig_h": "10.10.1.128", "id.resp_h": "8.8.4.4", "server_name": "dns.google"}
+{"nsm": {"sensor": "zeek", "log": "ssl"}, "ts": "2026-10-01T19:30:45Z", "id.orig_h": "10.10.1.128", "id.resp_h": "8.8.4.4", "server_name": "notdns.google.example"}

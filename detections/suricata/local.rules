@@ -1,0 +1,40 @@
+# FTOU7 Network Threat Detection — custom Suricata rules
+# SID range 1004001-1004999. Conventions and tests: detections/README.md
+# Rules are added per case (case 1: 1004001-1004099, case 2: 1004100-1004199, case 3: 1004200-1004299).
+
+# --- Case 1: Lumma Stealer (2026-01-31 exercise) ------------------------------------
+# 1004001 - Lumma-style browser fingerprint UPLOAD.
+# What: the stealer opens the victim's browsers on its C2 page; each browser POSTs a
+#   URL-encoded fingerprint ("timestamp=...&system={platform, userAgent, languages...}")
+#   to /api/set_agent?...&act=log over plain HTTP.
+# Why: ET 2066606 fired once, on the first GET. This catches the upload itself, for every
+#   browser, and matches the URL layout + body shape, not a domain or IP that changes.
+# False alarms: a legitimate web app with the same API path and body layout (unlikely);
+#   no hits on the clean baseline.
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"FTOU7 NTD Lumma-style browser fingerprint upload (POST /api/set_agent act=log)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/set_agent?"; startswith; content:"&act=log"; content:"&agent="; http.request_body; content:"timestamp="; startswith; content:"&system="; distance:0; classtype:trojan-activity; metadata:case 1, created 2026_10_21, author ftou7, mitre_technique T1041; sid:1004001; rev:1;)
+
+# --- Case 2: KongTuke / ClickFix, Node.js backdoor (2026-09-11 exercise) -------------
+# 1004101 - backdoor HTTP C2 path: random lowercase path + "&" + 64-hex token.
+# What: every request of the implant (beacons, task fetches, result POSTs, and the
+#   fallback servers after logon) used a path like /k/b3m&<64 hex> or
+#   /0tta67z/wazv&<64 hex>/0z0w; the token identifies the victim and stays the same
+#   across all seven C2 domains.
+# Why: the domains rotated (seven of them, plus three dead ones); the path layout did not.
+#   99 matching requests in case 2, 0 in the clean baseline and cases 1 and 3.
+# False alarms: a web app using "&" + a SHA-256 value right after a short path. The
+#   rule needs the token to be exactly 64 hex characters, directly after the "&".
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"FTOU7 NTD KongTuke-style backdoor HTTP C2 path (random path + & + 64-hex token)"; flow:established,to_server; http.uri; content:"&"; pcre:"/^\/[a-z0-9\/]{1,40}&[0-9a-f]{64}(?:\/[a-z0-9]*)?$/"; classtype:trojan-activity; metadata:case 2, created 2026_10_22, author ftou7, mitre_technique T1071.001; sid:1004101; rev:1;)
+
+# --- Case 3: Natureforce, RAT over a custom protocol (2026-10-01 exercise) -----------
+# 1004201 - traffic to TCP 443 that is not TLS (protocol detection failed).
+# What: the RAT held one connection to its server on port 443 for 37 minutes (13.4 MB in,
+#   84 KB out) using its own protocol, not TLS. Suricata could not identify the protocol
+#   ("failed"); Zeek found no service either.
+# Why: port 443 is chosen because firewalls let it out; real HTTPS on 443 is TLS. In the
+#   four captures, every other connection to 443 was TLS. This alerts once per connection
+#   (flowbits), whatever the server's address.
+# False alarms: some VPN clients and older remote-support tools that tunnel their own
+#   protocol over 443. Allowlist them by destination.
+# Measured first: "connection longer than 30 minutes" would NOT work: two genuine
+#   Microsoft TLS connections in the same capture also lasted over 30 minutes.
+alert tcp $HOME_NET any -> $EXTERNAL_NET 443 (msg:"FTOU7 NTD Non-TLS traffic to TCP 443 (protocol detection failed)"; flow:established,to_server; app-layer-protocol:failed; flowbits:isnotset,ntd.non_tls_443; flowbits:set,ntd.non_tls_443; classtype:bad-unknown; metadata:case 3, created 2026_10_22, author ftou7, mitre_technique T1571; sid:1004201; rev:1;)

@@ -1,0 +1,11 @@
+# Case 3 indicators for reputation lookups (by name / address / hash only).
+# Left out: Google, Microsoft, Let's Encrypt and Sectigo services (context).
+domain ars-soar[.]com
+domain sorrelapse[.]best
+domain holtandberyl[.]com
+ip 54[.]201[.]5[.]185
+ip 44[.]203[.]10[.]190
+ip 35[.]170[.]55[.]9
+ip 107[.]175[.]82[.]242
+ip 195[.]63[.]128[.]106
+sha256 b789adce70c028a6d17be45ec34667aa95586350ee0c4057e75b138b1ad35061

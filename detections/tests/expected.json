@@ -1,0 +1,121 @@
+{
+  "_about": "Where each case rule must fire (true positive) and where it must stay silent (false-positive check). Counts are per capture run. 'exactly' when the number is fully explained by the evidence, 'at_least' when it depends on replay timing. Checked by scripts/test_detections.py against the latest run of each capture.",
+  "captures": [
+    "baseline",
+    "case-1",
+    "case-2",
+    "case-3"
+  ],
+  "rules": [
+    {
+      "rule": "suricata:1004001",
+      "name": "Lumma-style browser fingerprint upload",
+      "fire": {
+        "case-1": {
+          "exactly": 2
+        }
+      },
+      "why": "two fingerprint POSTs in case 1: Chrome at 23:05:40 and Edge at 23:05:47"
+    },
+    {
+      "rule": "wazuh:100801",
+      "name": "Upload-heavy TLS session to an outside host",
+      "fire": {
+        "case-1": {
+          "exactly": 3
+        }
+      },
+      "why": "three uploads to the Lumma C2: 253 KB, 388 KB, 1.42 MB"
+    },
+    {
+      "rule": "wazuh:100803",
+      "name": "Burst of LSA name lookups (domain group discovery)",
+      "fire": {
+        "case-1": {
+          "at_least": 1
+        }
+      },
+      "why": "748 lookups in 3 s; the rule fires once, then stays quiet for 60 s (ignore=60)"
+    },
+    {
+      "rule": "suricata:1004101",
+      "name": "KongTuke-style backdoor HTTP C2 path (& + 64-hex token)",
+      "fire": {
+        "case-2": {
+          "exactly": 99
+        }
+      },
+      "why": "99 HTTP requests of the implant (69 to the main C2, 30 to the fallback servers) all use the layout"
+    },
+    {
+      "rule": "wazuh:100822",
+      "name": "Large plain-HTTP upload (POST >= 1 MB to an outside host)",
+      "fire": {
+        "case-2": {
+          "exactly": 1
+        }
+      },
+      "why": "one 4,447,024-byte POST at 20:09:55"
+    },
+    {
+      "rule": "wazuh:100821",
+      "name": "HTTP polling: 20+ empty (204) replies from one host in 5 min",
+      "fire": {
+        "case-2": {
+          "at_least": 1
+        }
+      },
+      "why": "52 empty replies from the C2; ignore=300 limits repeats"
+    },
+    {
+      "rule": "wazuh:100824",
+      "name": "Same name fails to resolve 10+ times in 5 min (dead C2 fallback)",
+      "fire": {
+        "case-2": {
+          "at_least": 1
+        }
+      },
+      "why": "three dead fallback domains, 15-16 failures each; ignore=300 applies to the whole rule, so the first one fires"
+    },
+    {
+      "rule": "suricata:1004201",
+      "name": "Non-TLS traffic to TCP 443 (protocol detection failed)",
+      "fire": {
+        "case-3": {
+          "exactly": 1
+        }
+      },
+      "why": "one 37-minute RAT connection to its server on 443; flowbits limit the rule to one alert per connection"
+    },
+    {
+      "rule": "wazuh:100840",
+      "name": "Command-line tool downloads a Windows program over HTTP",
+      "fire": {
+        "case-3": {
+          "exactly": 1
+        }
+      },
+      "why": "curl/8.21.0 fetched runner_ilove.exe from a bare IP on port 9000"
+    },
+    {
+      "rule": "wazuh:100841",
+      "name": "Command-line HTTP request from a workstation (visibility)",
+      "fire": {
+        "case-3": {
+          "exactly": 2
+        }
+      },
+      "why": "the two curl script fetches from holtandberyl; the program download goes to 100840 instead"
+    },
+    {
+      "rule": "wazuh:100842",
+      "name": "DNS-over-HTTPS from a client",
+      "fire": {
+        "case-3": {
+          "exactly": 1
+        }
+      },
+      "why": "one TLS session to dns.google right before the C2 connection"
+    }
+  ]
+}

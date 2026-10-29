@@ -1,0 +1,10 @@
+* text=auto
+*.sh text eol=lf
+*.rules text eol=lf
+*.xml text eol=lf
+*.yaml text eol=lf
+*.py text eol=lf
+*.jsonl text eol=lf
+detections/tests/*.txt text eol=lf
+*.zeek text eol=lf
+*.conf text eol=lf

@@ -1,0 +1,13 @@
+# Case 1 indicators for reputation lookups (by name / address only).
+# Cloudflare addresses (104.21.x, 172.67.x) are left out: shared by millions of sites,
+# their reputation says nothing about this case. The domains behind them are looked up.
+domain hiyter[.]com
+domain media[.]megafilehub4[.]lat
+domain arch[.]filemegahab4[.]sbs
+domain whooptm[.]cyou
+domain whitepepper[.]su
+domain holiday-forever[.]cc
+domain communicationfirewall-security[.]cc
+ip 62[.]72[.]32[.]156
+ip 153[.]92[.]1[.]49
+ip 80[.]97[.]160[.]24
